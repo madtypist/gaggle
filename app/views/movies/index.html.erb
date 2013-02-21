@@ -1,0 +1,5 @@
+<h1>All the Movies</h1>
+<% @movies.each do |movie| %>
+  <h2><%= movie.title %> (<%= movie.year %>)</h2>
+  <p>Description: <%= movie.desc %></p>
+<% end %>
