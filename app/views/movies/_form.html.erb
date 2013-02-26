@@ -1,0 +1,15 @@
+<p>Add a new movie to the database</p>
+
+<%= form_for(@movie) do |f| %>
+  <p><%= f.label "Movie Title" %>
+  <%= f.text_field :title %></p>
+
+  <p><%= f.label "Description" %>
+  <%= f.text_area :desc %></p>
+
+  <p><%= f.label "Year" %>
+  <%= f.text_field :year %></p>
+
+  <%= f.submit "hello", :class => 'btn btn-primary' %>
+
+<% end %>
