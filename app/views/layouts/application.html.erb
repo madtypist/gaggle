@@ -14,6 +14,12 @@
     </div>
     <div class="span10">
     <!--Body content-->
+    <% if !flash.notice.nil? %>
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash.notice %>
+      </div>
+    <% end %>
     <%= yield %>
     </div>
     </div>

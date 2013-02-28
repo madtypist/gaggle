@@ -5,3 +5,5 @@
   <li><%= link_to movie.title, movie_path(movie) %> (<%= movie.year %>)</li>
 <% end %>
 </ul>
+
+<p><%= button_to "Add a new movie to the list", new_movie_path, method: :get, class: "btn btn-success" %>
