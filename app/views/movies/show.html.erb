@@ -2,3 +2,6 @@
 <div class="movie_desc">
 <%= @movie.desc %>
 </div>
+
+<p><%= link_to "Edit", edit_movie_path(@movie) %></p>
+<p><%= link_to "Back", movies_path %></p>
