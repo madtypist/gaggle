@@ -7,25 +7,68 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
+
   <p class="alert"><%= alert %></p>
+     <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Gaggle</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <div class="navbar-form pull-right">
+              <p class="navbar-text">
+              <% if user_signed_in? %>
+                Logged in as <strong><%= current_user.email %></strong>
+                <%= link_to 'Edit profile', edit_user_registration_path %> |
+                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+              <% else %>
+                <%= link_to "Sign up", new_user_registration_path %> |
+                <%= link_to "Login", new_user_session_path %>
+              <% end %>
+            </p>
+            </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
 
     <div class="container-fluid">
-    <div class="row-fluid">
-    <div class="span2">
-    <!--Sidebar content-->
-    </div>
-    <div class="span10">
-    <!--Body content-->
-    <% if !flash.notice.nil? %>
-      <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= flash.notice %>
+      <div class="row-fluid">
+        <div class="span2">
+        <!--Sidebar content-->
+        </div>
+        <div class="span10">
+        <!--Body content-->
+        <% if !flash.notice.nil? %>
+          <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash.notice %>
+          </div>
+        <% end %>
+        <%= yield %>
+        </div>
       </div>
-    <% end %>
-    <%= yield %>
-    </div>
-    </div>
     </div>
 
 </body>
