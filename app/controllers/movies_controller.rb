@@ -1,4 +1,8 @@
 class MoviesController < ApplicationController
+
+  #Make sure the user is logged in before letting them do anything except view index and show
+  before_filter :authenticate_user!, except: [:index, :show]
+
   def show
     @movie = Movie.find(params[:id])
   end
