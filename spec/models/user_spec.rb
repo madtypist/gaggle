@@ -1,5 +1,14 @@
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before {
+    @user = User.new(:username => "testuser", :email => "something@fake.com", :password => "password", :password_confirmation => "password")
+  }
+
+  subject { @user }
+
+  it { should respond_to(:username) }
+  it { should respond_to(:email) }
+
+  it { should be_valid }
 end
