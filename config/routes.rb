@@ -1,4 +1,5 @@
 Gaggle::Application.routes.draw do
+  root :to => "movies#index"
   devise_for :users,
               controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
