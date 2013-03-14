@@ -10,6 +10,10 @@ describe Movie do
   it { should respond_to(:title) }
   it { should respond_to(:desc) }
   it { should respond_to(:year) }
+  it { should respond_to(:ratings) }
+
+  #note - how do I come back and change this to reviewers instead of users?
+  it { should respond_to(:users) }
 
   it { should be_valid }
 
