@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe Rating do
   let (:user) { FactoryGirl.create(:user) }
+  let (:movie) { FactoryGirl.create(:movie) }
 
   before {
-    @rating = user.ratings.build(opinion: "some thoughts", recommended: true, grade: 90)
+    @rating = user.ratings.build(opinion: "some thoughts", recommended: true, grade: 90, movie_id: movie.id)
   }
 
   subject { @rating }
@@ -17,19 +18,18 @@ describe Rating do
   end
 
   describe "accessible attributes" do
-
     it "should not allow access to user_id" do
       expect do
         Rating.new(user_id: user.id)
       end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
     end
+  end
 
-    it "should not allow access to movie_id" do
-      expect do
-        Rating.new(movie_id: 1)
-      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
-    end
-
+  describe "relationships" do
+    it { should respond_to(:user) }
+    it { should respond_to(:movie) }
+    its(:user) { should == user }
+    its(:movie) { should == movie }
   end
 
 end

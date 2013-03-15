@@ -5,4 +5,10 @@ FactoryGirl.define do
     u.password "password"
     u.password_confirmation "password"
   end
+
+  factory :movie do |m|
+    m.title "Best Movie Ever"
+    m.desc "This is a great movie. Stuff blows up"
+    m.year 2000
+  end
 end
