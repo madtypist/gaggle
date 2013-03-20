@@ -4,6 +4,7 @@ Gaggle::Application.routes.draw do
               controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   resources :movies
+  resources :ratings
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
