@@ -20,6 +20,10 @@ describe Rating do
     it { should_not be_valid }
   end
 
+  describe "when movie_id is not present" do
+    #insert some code here
+  end
+
   describe "accessible attributes" do
     it "should not allow access to user_id" do
       expect do
