@@ -21,7 +21,8 @@ describe Rating do
   end
 
   describe "when movie_id is not present" do
-    #insert some code here
+    before { @rating.movie_id = nil }
+    it { should_not be_valid }
   end
 
   describe "accessible attributes" do

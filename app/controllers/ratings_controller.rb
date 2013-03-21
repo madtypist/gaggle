@@ -22,10 +22,10 @@ class RatingsController < ApplicationController
 
     @movie = Movie.find(params[:rating][:movie_id])
     if @rating.save
-      flash[:success] = "Rating updated!"
+      flash[:notice] = "Rating updated!"
       redirect_to movie_path(@movie)
     else
-      flash[:error] = "Problems occurred when trying to save rating"
+      flash[:notice] = "Problems occurred when trying to save rating"
     end
   end
 end
