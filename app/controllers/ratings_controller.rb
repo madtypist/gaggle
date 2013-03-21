@@ -9,7 +9,20 @@ class RatingsController < ApplicationController
     @rating = current_user.ratings.build(params[:rating])
     @movie = Movie.find(params[:rating][:movie_id])
     if @rating.save
-      flash[:success] = "Rating added!"
+      flash[:notice] = "Rating added!"
+      redirect_to movie_path(@movie)
+    else
+      flash[:notice] = "Problems occurred when trying to save rating"
+    end
+  end
+
+  def update
+    @rating = Rating.find(params[:id])
+    @rating.update_attributes(params[:rating])
+
+    @movie = Movie.find(params[:rating][:movie_id])
+    if @rating.save
+      flash[:success] = "Rating updated!"
       redirect_to movie_path(@movie)
     else
       flash[:error] = "Problems occurred when trying to save rating"
