@@ -5,7 +5,11 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
-    @rating = Rating.new
+    if Rating.where(:user_id => current_user.id, :movie_id => @movie.id).empty?
+      @rating = Rating.new
+    else
+      @rating = Rating.where(:user_id => current_user.id, :movie_id => @movie.id).find(params[:id])
+    end
   end
 
   def index
