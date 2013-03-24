@@ -1,16 +1,19 @@
-<h3>Add a rating for <%= @movie.title %></h3>
+
+<p class="rating_sidebar_title">Add a rating for <%= @movie.title %></p>
 
 <%= form_for (@rating) do |f| %>
   <%= f.hidden_field :movie_id, :value => @movie.id %>
 
   <p><%= f.label "Grade" %>
-  <%= f.text_field :grade %></p>
+  <%= f.text_field :grade, :columns => "10" %></p>
 
   <p><%= f.label "Share your thoughts on this film" %>
-  <%= f.text_area :opinion, :size => "120x10" %></p>
+  <%= f.text_area :opinion, :size => "80x10" %></p>
 
   <p><%= f.label "Recommended?" %>
   <%= f.check_box :recommended %></p>
 
   <%= f.submit "Rate this movie", :class => 'btn btn-primary' %>
 <% end %>
+
+
