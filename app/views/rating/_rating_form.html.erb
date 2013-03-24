@@ -1,0 +1,32 @@
+<script>
+  $(function() {
+    $( "#slider-range-max" ).slider({
+    range: "max",
+    min: 1,
+    max: 100,
+    value: <%= @rating.grade %>,
+    slide: function( event, ui ) {
+    $( "#rating_grade" ).val( ui.value );
+    }
+    });
+    $( "#rating_grade" ).val( $( "#slider-range-max" ).slider( "value" ) );
+  });
+</script>
+
+<p class="rating_sidebar_title">Add a rating for <%= @movie.title %></p>
+
+<%= form_for (@rating) do |f| %>
+  <%= f.hidden_field :movie_id, :value => @movie.id %>
+
+  <p><%= f.label "Grade" %>
+  <%= f.text_field :grade, :size => "3", :maxlength => "3", :readonly => true %></p>
+  <div id="slider-range-max"></div>
+
+  <p><%= f.label "Share your thoughts on this film" %>
+  <%= f.text_area :opinion, :size => "80x10" %></p>
+
+  <p><%= f.label "Recommended?" %>
+  <%= f.check_box :recommended %></p>
+
+  <%= f.submit "Rate this movie", :class => 'btn btn-primary' %>
+<% end %>

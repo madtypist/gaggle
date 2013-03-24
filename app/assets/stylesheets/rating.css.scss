@@ -1,0 +1,21 @@
+// Place all the styles related to the rating controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.rating_sidebar_title {
+  font-size: 1.1em;
+}
+
+#slider-range-max { background: #8ae234; }
+
+#rating_grade {
+  background-color:#f0f0f0;
+  border:1px solid #dbdbdb;
+  padding:5px;
+  -webkit-border-radius:7px;
+  -moz-border-radius:7px;
+  color: #000;
+  font-weight:bold;
+  font-size: 24px;
+  width: 3em;
+}
