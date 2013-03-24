@@ -14,6 +14,11 @@ class MoviesController < ApplicationController
     end
   end
 
+  def search
+    q = params[:movie][:title]
+    @movies = Movie.where("title LIKE?", "%#{q}%")
+  end
+
   def index
     @movies = Movie.all
   end

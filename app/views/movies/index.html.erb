@@ -6,4 +6,12 @@
 <% end %>
 </ul>
 
+<h2>Search for a Movie</h2>
+
+<%= form_for Movie.new, :url => "movies/search", method: :post do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.submit "Search" %>
+<% end %>
+
 <p><%= button_to "Add a new movie to the list", new_movie_path, method: :get, class: "btn btn-success" %>
