@@ -1,5 +1,4 @@
 class MoviesController < ApplicationController
-
   #Make sure the user is logged in before letting them do anything except view index and show
   before_filter :authenticate_user!, except: [:index, :show]
 
@@ -16,6 +15,14 @@ class MoviesController < ApplicationController
 
   def search
     q = params[:movie][:title]
+
+    uri = URI('http://api.rottentomatoes.com/api/public/v1.0/movies.json')
+    params = { :apikey => "#{ENV['ROTTEN_TOMATOES_KEY']}", :q => q }
+    uri.query = URI.encode_www_form(params)
+
+    @res = Net::HTTP.get_response(uri)
+    #puts res.body if res.is_a?(Net::HTTPSuccess)
+
     @movies = Movie.where("title LIKE?", "%#{q}%")
   end
 
