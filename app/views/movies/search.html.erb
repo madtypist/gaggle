@@ -1,4 +1,10 @@
+<h1>Search Results</h1>
+<p>Which movie were you looking for?</p>
 <% @movies.each do |m| %>
   <p><%= m.title %></p>
 <% end %>
-TEST: <%= @res.body %>
+
+Test:
+<% @json["movies"].each do |m| %>
+  <p><%= m["id"] + " " +  m["title"] %></p>
+<% end %>

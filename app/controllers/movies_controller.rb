@@ -21,6 +21,7 @@ class MoviesController < ApplicationController
     uri.query = URI.encode_www_form(params)
 
     @res = Net::HTTP.get_response(uri)
+    @json = JSON.parse @res.body
     #puts res.body if res.is_a?(Net::HTTPSuccess)
 
     @movies = Movie.where("title LIKE?", "%#{q}%")
