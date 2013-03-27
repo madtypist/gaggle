@@ -17,8 +17,8 @@ class MoviesController < ApplicationController
     q = params[:movie][:title]
 
     uri = URI('http://api.rottentomatoes.com/api/public/v1.0/movies.json')
-    params = { :apikey => "#{ENV['ROTTEN_TOMATOES_KEY']}", :q => q }
-    uri.query = URI.encode_www_form(params)
+    rt_params = { :apikey => "#{ENV['ROTTEN_TOMATOES_KEY']}", :q => q }
+    uri.query = URI.encode_www_form(rt_params)
 
     @res = Net::HTTP.get_response(uri)
     @json = JSON.parse @res.body

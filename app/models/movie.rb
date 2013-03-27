@@ -1,5 +1,5 @@
 class Movie < ActiveRecord::Base
-  attr_accessible :desc, :title, :year, :movie_id
+  attr_accessible :summary, :title, :year, :movie_id, :rt_id
 
   validates :title, presence: true
 
