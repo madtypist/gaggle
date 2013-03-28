@@ -15,16 +15,8 @@ class MoviesController < ApplicationController
 
   def search
     q = params[:movie][:title]
-
-    uri = URI('http://api.rottentomatoes.com/api/public/v1.0/movies.json')
-    rt_params = { :apikey => "#{ENV['ROTTEN_TOMATOES_KEY']}", :q => q }
-    uri.query = URI.encode_www_form(rt_params)
-
-    @res = Net::HTTP.get_response(uri)
-    @json = JSON.parse @res.body
-    #puts res.body if res.is_a?(Net::HTTPSuccess)
-
-    @movies = Movie.where("title LIKE?", "%#{q}%")
+    @json = Movie.rt_search(q)
+    @movies = Movie.db_search(q)
   end
 
   def index
