@@ -18,11 +18,7 @@ class Movie < ActiveRecord::Base
     json = JSON.parse res.body
 
     json["movies"].each do |m|
-      # if m["alternate_ids"]["imdb"]
-      #   imdb_id = m["alternate_ids"]["imdb"]
-      # else
-      #   imdb_id = ""
-      # end
+      #Why this conditional? Well, for whatever reason, my anecdotal exploration of the Rotten Tomatoes API suggests that a score of -1 is usually attached to something terrible/incredibly niche (and therefore not worth rating)
       if m["ratings"]["critics_score"] != -1
         Movie.where(rt_id: m["id"]).first_or_create(summary: m["synopsis"], title: m["title"], year: m["year"], poster_location: m["posters"]["detailed"])
       end

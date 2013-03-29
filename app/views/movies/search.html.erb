@@ -1,5 +1,7 @@
 <h1>Search Results</h1>
 <p>Which movie were you looking for?</p>
-<% @movies.each do |m| %>
-  <p><%= m.title %></p>
+<ul>
+<% @movies.each do |movie| %>
+  <li><%= link_to movie.title, movie_path(movie) %> (<%= movie.year %>)</li>
 <% end %>
+</ul>
