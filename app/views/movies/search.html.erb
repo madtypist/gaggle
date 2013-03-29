@@ -3,8 +3,3 @@
 <% @movies.each do |m| %>
   <p><%= m.title %></p>
 <% end %>
-
-Test:
-<% @json["movies"].each do |m| %>
-  <p><%= m["id"] + " " +  m["title"] %></p>
-<% end %>

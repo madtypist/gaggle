@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     if user_signed_in?
       if Rating.where(:user_id => current_user.id, :movie_id => @movie.id).empty?
-        @rating = Rating.new
+        @rating = Rating.new(grade: 75)
       else
         @rating = Rating.where(:user_id => current_user.id, :movie_id => @movie.id).find(params[:id])
       end
