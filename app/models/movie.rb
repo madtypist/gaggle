@@ -4,6 +4,7 @@ class Movie < ActiveRecord::Base
   attr_accessible :summary, :title, :year, :movie_id, :rt_id, :imdb_id, :poster_location
 
   validates :title, presence: true
+  default_scope :order => 'title ASC'
 
   has_many :ratings
   has_many :users, :through => :ratings
@@ -23,13 +24,16 @@ class Movie < ActiveRecord::Base
         Movie.where(rt_id: m["id"]).first_or_create(summary: m["synopsis"], title: m["title"], year: m["year"], poster_location: m["posters"]["detailed"])
       end
     end
-
-    json
   end
 
   def self.db_search(query)
+    rt_search(query)
     movies = Movie.where("title LIKE?", "%#{query}%")
     movies
+  end
+
+  def avg_rating
+
   end
 
 end
