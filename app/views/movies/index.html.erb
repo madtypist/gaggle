@@ -1,11 +1,3 @@
-<h1>All the Movies</h1>
-  <ul>
-<% @movies.each do |movie| %>
-
-  <li><%= link_to movie.title, movie_path(movie) %> (<%= movie.year %>)</li>
-<% end %>
-</ul>
-
 <h2>Search for a Movie</h2>
 
 <%= form_for Movie.new, :url => "movies/search", method: :post do |f| %>
@@ -13,5 +5,13 @@
   <%= f.text_field :title %>
   <%= f.submit "Search" %>
 <% end %>
+
+<h1>All the Movies</h1>
+  <ul>
+<% @movies.each do |movie| %>
+
+  <li><%= link_to movie.title, movie_path(movie) %> (<%= movie.year %>)</li>
+<% end %>
+</ul>
 
 <p><%= button_to "Add a new movie to the list", new_movie_path, method: :get, class: "btn btn-success" %>

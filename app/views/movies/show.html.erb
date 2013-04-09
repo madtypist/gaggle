@@ -8,7 +8,7 @@
     </div>
 
     <div class="movie_ratings">
-      <h3>Ratings from all users</h3>
+      <h3>Ratings from all users (average rating: <%= @movie.ratings.average('grade') %>)</h3>
       <% @movie.ratings.each do |rating| %>
         <p>Grade from <%= User.find(rating.user_id).username %> : <%= rating.grade %></p>
       <% end %>
