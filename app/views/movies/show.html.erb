@@ -1,8 +1,20 @@
 <div class="row">
   <div class="span8">
-    <h1><%= @movie.title %></h1>
+    <div class="poster"><img src="<%= @movie.poster_location %>"  /></div>
+
+    <h1><%= @movie.title %> (<%= @movie.year %>)</h1>
     <div class="movie_desc">
-    <%= @movie.desc %>
+      Summary: <%= @movie.summary %>
+    </div>
+    <br />
+    <p>MPAA rating: <%= @rotteninfo.mpaa_rating %></p>
+    <div class="critics_consensus">Critics Consensus: <%= @rotteninfo.critics_consensus %></div>
+
+    <div class="movie_ratings">
+      <h3>Ratings from all users (average rating: <%= @movie.ratings.average('grade') %>)</h3>
+      <% @movie.ratings.each do |rating| %>
+        <p>Grade from <%= User.find(rating.user_id).username %> : <%= rating.grade %></p>
+      <% end %>
     </div>
 
     <!-- TO DO LATER: let's only make these features available to admins -->
@@ -12,7 +24,6 @@
   </div>
 
   <div class="span3 well">
-    <!-- TO DO LATER: let's move this to a skinny column on the right hand side of the page later on -->
     <% if user_signed_in? %>
       <%= render partial: 'rating/rating_form' %>
     <% else %>

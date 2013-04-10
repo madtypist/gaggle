@@ -1,3 +1,11 @@
+<h2>Search for a Movie</h2>
+
+<%= form_for Movie.new, :url => "movies/search", method: :post do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.submit "Search" %>
+<% end %>
+
 <h1>All the Movies</h1>
   <ul>
 <% @movies.each do |movie| %>
