@@ -1,5 +1,9 @@
 # encoding: utf-8
 
+# I guess we need to include these to use the methods
+require "rottentomatoes"
+include RottenTomatoes
+
 class Movie < ActiveRecord::Base
   attr_accessible :summary, :title, :year, :movie_id, :rt_id, :imdb_id, :poster_location
 
@@ -34,6 +38,12 @@ class Movie < ActiveRecord::Base
 
   def avg_rating
 
+  end
+
+  def self.rt_lookup(rotten_id)
+    Rotten.api_key = ENV['ROTTEN_TOMATOES_KEY']
+    m = RottenMovie.find(:id => rotten_id)
+    m
   end
 
 end

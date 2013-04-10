@@ -6,6 +6,9 @@
     <div class="movie_desc">
       Summary: <%= @movie.summary %>
     </div>
+    <br />
+    <p>MPAA rating: <%= @rotteninfo.mpaa_rating %></p>
+    <div class="critics_consensus">Critics Consensus: <%= @rotteninfo.critics_consensus %></div>
 
     <div class="movie_ratings">
       <h3>Ratings from all users (average rating: <%= @movie.ratings.average('grade') %>)</h3>

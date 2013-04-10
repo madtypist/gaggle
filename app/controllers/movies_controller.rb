@@ -11,6 +11,8 @@ class MoviesController < ApplicationController
         @rating = Rating.where(:user_id => current_user.id, :movie_id => @movie.id).first
       end
     end
+    # For the individual movie pages we should pull the Rotten Tomatoes info on the fly so that the user gets the most up-to-date info available
+    @rotteninfo = Movie.rt_lookup(@movie.rt_id)
   end
 
   def search
