@@ -8,7 +8,7 @@ FactoryGirl.define do
 
   factory :movie do |m|
     m.title "Best Movie Ever"
-    m.desc "This is a great movie. Stuff blows up"
+    m.summary "This is a great movie. Stuff blows up"
     m.year 2000
   end
 end

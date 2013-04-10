@@ -1,0 +1,9 @@
+# Add application configuration variables here, as shown below.
+#
+
+# To get a twitter dev key, go here: https://dev.twitter.com/apps/new
+TWITTER_CONSUMER_KEY: consumerkeyhere
+TWITTER_CONSUMER_SECRET: consumersecrethere
+
+# To get a Rotten tomatoes dev key, go here: http://developer.rottentomatoes.com/apps/myapps
+ROTTEN_TOMATOES_KEY: rottentomatoeskeyhere

@@ -5,6 +5,8 @@ Gaggle::Application.routes.draw do
 
   resources :ratings
   resources :movies
+  match 'movies/search' => 'movies#search', :action => :post
+  #resource :search
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

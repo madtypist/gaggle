@@ -39,6 +39,9 @@ gem 'omniauth-twitter'
 # Because only morons store sensitive passwords and keys in their github repo
 gem 'figaro'
 
+# Hey, let's put in a rotten tomatoes gem so we don't have to parse the JSON on our own!
+gem 'rottentomatoes'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
