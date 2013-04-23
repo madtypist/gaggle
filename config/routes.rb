@@ -5,7 +5,8 @@ Gaggle::Application.routes.draw do
 
   get "static_pages/about"
 
-  root :to => "movies#index"
+  root :to => "static_pages#home"
+
   devise_for :users,
               controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
