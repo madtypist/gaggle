@@ -14,9 +14,11 @@
   </div>
   <div class="span4">
     <h2>In Theaters Now</h2>
-    <% @boxoffice.each do |bm| %>
-      <p><%= bm.title %></p>
-    <% end %>
+    <ol>
+      <% @boxoffice.each do |bm| %>
+        <li><%= link_to bm.title, movie_path(Movie.where(rt_id: bm.id)) %> </li>
+      <% end %>
+    </ol>
  </div>
   <div class="span4">
     <h2>Top Rentals</h2>
