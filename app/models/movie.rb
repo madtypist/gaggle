@@ -13,6 +13,12 @@ class Movie < ActiveRecord::Base
   has_many :ratings
   has_many :users, :through => :ratings
 
+  def self.create_from_rt(rotten_id)
+    Rotten.api_key = ENV['ROTTEN_TOMATOES_KEY']
+    m = RottenMovie.find(:id => rotten_id)
+    Movie.where(rt_id: rotten_id).first_or_create(summary: m.synopsis, title: m.title, year: m.year, poster_location: m.posters.detailed)
+  end
+
   def self.rt_search(query)
     # Search Rotten Tomatoes for titles matching the query string. If they aren't in the database, add them
     uri = URI('http://api.rottentomatoes.com/api/public/v1.0/movies.json')
