@@ -16,7 +16,8 @@ class Movie < ActiveRecord::Base
   def self.create_from_rt(rotten_id)
     Rotten.api_key = ENV['ROTTEN_TOMATOES_KEY']
     m = RottenMovie.find(:id => rotten_id)
-    Movie.where(rt_id: rotten_id).first_or_create(summary: m.synopsis, title: m.title, year: m.year, poster_location: m.posters.detailed)
+    movie = Movie.where(rt_id: rotten_id).first_or_create(summary: m.synopsis, title: m.title, year: m.year, poster_location: m.posters.detailed)
+    movie
   end
 
   def self.rt_search(query)

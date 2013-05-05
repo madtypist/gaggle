@@ -9,20 +9,26 @@
 <div class="row-fluid marketing">
   <div class="span4">
     <h2>Recently Rated Movies</h2>
-    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-    <p><a class="btn" href="#">View details &raquo;</a></p>
+    <ol>
+      <% @recentlyrated.each do |recent| %>
+        <li><%= link_to recent.movie.title, movie_path(recent.movie) %></li>
+      <% end %>
+    </ol>
   </div>
   <div class="span4">
     <h2>In Theaters Now</h2>
     <ol>
       <% @boxoffice.each do |bm| %>
-        <li><%= link_to bm.title, movie_path(Movie.where(rt_id: bm.id)) %> </li>
+        <li><%= link_to bm.title, movie_path(bm) %></li>
       <% end %>
     </ol>
  </div>
   <div class="span4">
-    <h2>Top Rentals</h2>
-    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-    <p><a class="btn" href="#">View details &raquo;</a></p>
+    <h2>New Rentals</h2>
+    <ol>
+      <% @rentals.each do |r| %>
+      <li><%= link_to r.title, movie_path(r) %></li>
+      <% end %>
+    </ol>
   </div>
 </div>
