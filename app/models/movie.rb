@@ -53,4 +53,16 @@ class Movie < ActiveRecord::Base
     m
   end
 
+  def self.get_recent_rentals
+    #Hey! Let's get our recent rentals from Rotten Tomatoes, m'kay?
+    rentals = []
+    Rotten.api_key = ENV['ROTTEN_TOMATOES_KEY']
+    results = RottenList.find(:type => 'new_releases')
+    results.each do |m|
+      m = Movie.create_from_rt(m.id)
+      rentals << m
+    end
+    rentals
+  end
+
 end

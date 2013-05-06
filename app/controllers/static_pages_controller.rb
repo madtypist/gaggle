@@ -11,12 +11,7 @@ class StaticPagesController < ApplicationController
       @boxoffice << m
     end
 
-    @rentals = []
-    rentals = RottenList.find(:type => 'new_releases')
-    rentals.each do |m|
-      m = Movie.create_from_rt(m.id)
-      @rentals << m
-    end
+    @rentals = Movie.get_recent_rentals
 
     @recentlyrated = Rating.order("updated_at DESC").limit(5)
 
