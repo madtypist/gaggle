@@ -25,10 +25,12 @@
  </div>
   <div class="span4">
     <h2>New Rentals</h2>
-    <ol>
-      <% @rentals.each do |r| %>
-      <li><%= link_to r.title, movie_path(r) %></li>
-      <% end %>
-    </ol>
+    <% cache do %>
+      <ol>
+        <% Movie.get_recent_rentals.each do |r| %>
+        <li><%= link_to r.title, movie_path(r) %></li>
+        <% end %>
+      </ol>
+    <% end %>
   </div>
 </div>
