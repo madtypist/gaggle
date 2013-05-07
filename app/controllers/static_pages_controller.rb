@@ -11,8 +11,6 @@ class StaticPagesController < ApplicationController
       @boxoffice << m
     end
 
-    @rentals = Movie.get_recent_rentals
-
     @recentlyrated = Rating.order("updated_at DESC").limit(5)
 
   end
