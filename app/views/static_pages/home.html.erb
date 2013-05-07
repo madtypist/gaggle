@@ -9,11 +9,11 @@
 <div class="row-fluid marketing">
   <div class="span4">
     <h2>Recently Rated Movies</h2>
-    <ol>
+    <ul>
       <% @recentlyrated.each do |recent| %>
-        <li><%= link_to recent.movie.title, movie_path(recent.movie) %></li>
+        <li><%= link_to recent.movie.title, movie_path(recent.movie) %> was rated by <%= recent.user.username %> on <%= recent.updated_at.strftime("%m/%d/%Y") %></li>
       <% end %>
-    </ol>
+    </ul>
   </div>
   <div class="span4">
     <h2>In Theaters Now</h2>
