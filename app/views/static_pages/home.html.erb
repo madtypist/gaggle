@@ -17,11 +17,13 @@
   </div>
   <div class="span4">
     <h2>In Theaters Now</h2>
-    <ol>
-      <% @boxoffice.each do |bm| %>
-        <li><%= link_to bm.title, movie_path(bm) %></li>
-      <% end %>
-    </ol>
+    <% cache do %>
+      <ol>
+        <% Movie.get_box_office.each do |bm| %>
+          <li><%= link_to bm.title, movie_path(bm) %></li>
+        <% end %>
+      </ol>
+    <% end %>
  </div>
   <div class="span4">
     <h2>New Rentals</h2>

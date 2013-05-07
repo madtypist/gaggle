@@ -44,7 +44,7 @@ class Movie < ActiveRecord::Base
   end
 
   def avg_rating
-
+    #To DO
   end
 
   def self.rt_lookup(rotten_id)
@@ -63,6 +63,17 @@ class Movie < ActiveRecord::Base
       rentals << m
     end
     rentals
+  end
+
+  def self.get_box_office
+    Rotten.api_key = ENV['ROTTEN_TOMATOES_KEY']
+    boxoffice = []
+    result = RottenList.find(:type => 'box_office')
+    results.each do |m|
+      m = Movie.create_from_rt(m.id)
+      boxoffice << m
+    end
+    boxoffice
   end
 
 end
