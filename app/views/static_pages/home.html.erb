@@ -7,15 +7,16 @@
 
 <!-- Example row of columns -->
 <div class="row-fluid marketing">
-  <div class="span4">
+  <div class="span6">
     <h2>Recently Rated Movies</h2>
-    <ul>
       <% @recentlyrated.each do |recent| %>
-        <li><%= link_to recent.movie.title, movie_path(recent.movie) %> was rated by <%= recent.user.username %> on <%= recent.updated_at.strftime("%m/%d/%Y") %></li>
+      <p>
+        <img src="<%= recent.movie.poster_location %>" width="20%" height="20%" /><%= link_to recent.movie.title, movie_path(recent.movie) %> was rated by <%= recent.user.username %> on <%= recent.updated_at.strftime("%m/%d/%Y") %>
+        </p>
       <% end %>
-    </ul>
+
   </div>
-  <div class="span4">
+  <div class="span3">
     <h2>In Theaters Now</h2>
     <% cache do %>
       <ol>
@@ -25,7 +26,7 @@
       </ol>
     <% end %>
  </div>
-  <div class="span4">
+  <div class="span3">
     <h2>New Rentals</h2>
     <% cache do %>
       <ol>
