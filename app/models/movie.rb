@@ -13,6 +13,13 @@ class Movie < ActiveRecord::Base
   has_many :ratings
   has_many :users, :through => :ratings
 
+  def self.create_from_rt(rotten_id)
+    Rotten.api_key = ENV['ROTTEN_TOMATOES_KEY']
+    m = RottenMovie.find(:id => rotten_id)
+    movie = Movie.where(rt_id: rotten_id).first_or_create(summary: m.synopsis, title: m.title, year: m.year, poster_location: m.posters.detailed)
+    movie
+  end
+
   def self.rt_search(query)
     # Search Rotten Tomatoes for titles matching the query string. If they aren't in the database, add them
     uri = URI('http://api.rottentomatoes.com/api/public/v1.0/movies.json')
@@ -37,13 +44,36 @@ class Movie < ActiveRecord::Base
   end
 
   def avg_rating
-
+    #To DO
   end
 
   def self.rt_lookup(rotten_id)
     Rotten.api_key = ENV['ROTTEN_TOMATOES_KEY']
     m = RottenMovie.find(:id => rotten_id)
     m
+  end
+
+  def self.get_recent_rentals
+    #Hey! Let's get our recent rentals from Rotten Tomatoes, m'kay?
+    rentals = []
+    Rotten.api_key = ENV['ROTTEN_TOMATOES_KEY']
+    results = RottenList.find(:type => 'new_releases')
+    results.each do |m|
+      m = Movie.create_from_rt(m.id)
+      rentals << m
+    end
+    rentals
+  end
+
+  def self.get_box_office
+    Rotten.api_key = ENV['ROTTEN_TOMATOES_KEY']
+    boxoffice = []
+    result = RottenList.find(:type => 'box_office')
+    results.each do |m|
+      m = Movie.create_from_rt(m.id)
+      boxoffice << m
+    end
+    boxoffice
   end
 
 end
