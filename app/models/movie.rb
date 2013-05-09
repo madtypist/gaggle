@@ -43,10 +43,6 @@ class Movie < ActiveRecord::Base
     movies
   end
 
-  def avg_rating
-    #To DO
-  end
-
   def self.rt_lookup(rotten_id)
     Rotten.api_key = ENV['ROTTEN_TOMATOES_KEY']
     m = RottenMovie.find(:id => rotten_id)
