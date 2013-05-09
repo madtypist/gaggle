@@ -55,25 +55,28 @@ class Movie < ActiveRecord::Base
 
   def self.get_recent_rentals
     #Hey! Let's get our recent rentals from Rotten Tomatoes, m'kay?
-    rentals = []
     Rotten.api_key = ENV['ROTTEN_TOMATOES_KEY']
-    results = RottenList.find(:type => 'new_releases')
-    results.each do |m|
-      m = Movie.create_from_rt(m.id)
-      rentals << m
+    Rails.cache.fetch("recent_rentals", :expires_in => 10.minutes) do
+      rentals = []
+      results = RottenList.find(:type => 'new_releases')
+      results.each do |m|
+        m = Movie.create_from_rt(m.id)
+        rentals << m
+      end
+      rentals
     end
-    rentals
   end
 
   def self.get_box_office
     Rotten.api_key = ENV['ROTTEN_TOMATOES_KEY']
-    boxoffice = []
-    result = RottenList.find(:type => 'box_office')
-    results.each do |m|
-      m = Movie.create_from_rt(m.id)
-      boxoffice << m
+    Rails.cache.fetch("boxoffice", :expires_in => 10.minutes) do
+      boxoffice = []
+      results = RottenList.find(:type => 'box_office')
+      results.each do |m|
+        m = Movie.create_from_rt(m.id)
+        boxoffice << m
+      end
+      boxoffice
     end
-    boxoffice
   end
-
 end

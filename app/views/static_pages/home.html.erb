@@ -5,35 +5,38 @@
   <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
 </div>
 
+<h2>Recently Rated Films</h2>
+  <div class="row-fluid recent">
+    <ul class="thumbnails">
+      <% @recentlyrated.each do |recent| %>
+        <li class="span2">
+        <div class="thumbnail">
+          <%= link_to image_tag(recent.movie.poster_location, alt: recent.movie.title), movie_path(recent.movie) %>
+          <div class="caption">
+            <h4><%= link_to recent.movie.title, movie_path(recent.movie) %></h3>
+            <p>rated by <%= recent.user.username %> on <%= recent.updated_at.strftime("%m/%d/%Y") %></p>
+          </div>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
 <!-- Example row of columns -->
 <div class="row-fluid marketing">
   <div class="span6">
-    <h2>Recently Rated Movies</h2>
-      <% @recentlyrated.each do |recent| %>
-      <p>
-        <img src="<%= recent.movie.poster_location %>" width="20%" height="20%" /><%= link_to recent.movie.title, movie_path(recent.movie) %> was rated by <%= recent.user.username %> on <%= recent.updated_at.strftime("%m/%d/%Y") %>
-        </p>
-      <% end %>
-
-  </div>
-  <div class="span3">
     <h2>In Theaters Now</h2>
-    <% cache do %>
       <ol>
         <% Movie.get_box_office.each do |bm| %>
           <li><%= link_to bm.title, movie_path(bm) %></li>
         <% end %>
       </ol>
-    <% end %>
  </div>
-  <div class="span3">
+  <div class="span6">
     <h2>New Rentals</h2>
-    <% cache do %>
       <ol>
         <% Movie.get_recent_rentals.each do |r| %>
         <li><%= link_to r.title, movie_path(r) %></li>
         <% end %>
       </ol>
-    <% end %>
   </div>
 </div>
