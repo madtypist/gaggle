@@ -25,3 +25,8 @@
 .movie_item {
   background-color: white;
 }
+
+.row-fluid li:nth-child(3n) {
+    margin: 0px;
+    padding: 0;
+ }

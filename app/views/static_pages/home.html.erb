@@ -13,7 +13,7 @@
         <div class="thumbnail movie_item" align="center">
           <%= link_to image_tag(recent.movie.poster_location, alt: recent.movie.title, width: "75%", height: "75%"), movie_path(recent.movie) %>
           <div class="caption">
-            <h4><%= link_to recent.movie.title, movie_path(recent.movie) %></h3>
+            <h4><%= link_to recent.movie.title, movie_path(recent.movie) %></h4>
             <p>rated by <%= recent.user.username %> on <%= recent.updated_at.strftime("%m/%d/%Y") %></p>
           </div>
         </div>
@@ -23,13 +23,19 @@
   </div>
 <!-- Example row of columns -->
 <div class="row-fluid marketing">
-  <div class="span6">
+  <div class="span6 row">
     <h2>In Theaters Now</h2>
-      <ol>
+      <ul class="thumbnails">
         <% Movie.get_box_office.each do |bm| %>
-          <li><%= link_to bm.title, movie_path(bm) %></li>
+          <li class="span3">
+            <div class="thumbnail movie_item" align="center">
+            <%= link_to image_tag(bm.poster_location, alt: bm.title), movie_path(bm) %>
+            <div class="caption">
+              <%= link_to bm.title, movie_path(bm) %>
+            </div></div>
+          </li>
         <% end %>
-      </ol>
+      </ul>
  </div>
   <div class="span6">
     <h2>New Rentals</h2>
