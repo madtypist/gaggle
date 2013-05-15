@@ -26,7 +26,6 @@
   background-color: white;
 }
 
-.row-fluid li:nth-child(3n) {
-    margin: 0px;
-    padding: 0;
- }
+.movie_item img {
+  max-height: 200px;
+}
