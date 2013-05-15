@@ -24,8 +24,16 @@
 
 .movie_item {
   background-color: white;
+  float: left;
 }
 
 .movie_item img {
   max-height: 200px;
+}
+
+.thumbnails .span3:nth-child(3n+1),
+.thumbnails .span3:first-child + li + li + li,
+.thumbnails .span3:first-child + li + li + li + li + li + li {
+    margin-left: 0;
+    clear:left;
 }
