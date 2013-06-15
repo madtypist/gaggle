@@ -6,7 +6,7 @@ class Ability
     #
       user ||= User.new # guest user (not logged in)
       #if user.admin?
-      if user.username == "admin"
+      if user_signed_in?
         can :manage, :all
       else
         can :read, :all
