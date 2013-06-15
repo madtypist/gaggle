@@ -11,7 +11,7 @@
       <div class="span2 movie_item" align="center">
         <%= link_to image_tag(recent.movie.poster_location, alt: recent.movie.title), movie_path(recent.movie) %>
         <div class="caption">
-          <h4><%= link_to recent.movie.title, movie_path(recent.movie) %></h4>
+          <p><%= link_to recent.movie.title, movie_path(recent.movie) %></p>
           <p>rated by <%= recent.user.username %> on <%= recent.updated_at.strftime("%m/%d/%Y") %></p>
         </div>
       </div>
