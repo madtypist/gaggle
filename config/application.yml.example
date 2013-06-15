@@ -7,3 +7,6 @@ TWITTER_CONSUMER_SECRET: consumersecrethere
 
 # To get a Rotten tomatoes dev key, go here: http://developer.rottentomatoes.com/apps/myapps
 ROTTEN_TOMATOES_KEY: rottentomatoeskeyhere
+
+#Gaggle Session token
+APP_SESSION_TOKEN: sessionkeyhere
