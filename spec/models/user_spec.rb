@@ -23,4 +23,7 @@ describe User do
     before { @user.email = "" }
     it { should_not be_valid }
   end
+
+  describe "username should be unique" do
+  end
 end

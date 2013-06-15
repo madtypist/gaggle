@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username
   # attr_accessible :title, :body
   validates_presence_of :username
-  validates_uniqueness_of :username
+  validates_uniqueness_of :username #,:email, :case_sensitive => false
 
   has_many :ratings
   has_many :movies, :through => :ratings
