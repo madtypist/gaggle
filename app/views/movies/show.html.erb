@@ -18,7 +18,7 @@
     </div>
 
     <!-- let's only make these features available to admins -->
-    <% if can? :update, @movie %>
+    <% if can? :manage, @movie %>
       <p><%= button_to "Edit", edit_movie_path(@movie), method: :get, class: "btn" %></p>
       <p><%= button_to "Delete", movie_path(@movie), method: :delete, class: "btn btn-danger", confirm: "Are you sure you want to do this?" %>
     <% end %>
