@@ -42,6 +42,9 @@ gem 'figaro'
 # Hey, let's put in a rotten tomatoes gem so we don't have to parse the JSON on our own!
 gem 'rottentomatoes'
 
+# Authorization
+gem 'cancan'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
